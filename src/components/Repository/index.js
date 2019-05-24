@@ -12,7 +12,7 @@ import {
   RefreshText,
 } from './styles';
 
-export default function Repository({ data, onRefresh }) {
+export default function Repository({ data, onRefresh, onDestroy }) {
   return (
     <Container>
       <Name>{data.name}</Name>
@@ -31,6 +31,10 @@ export default function Repository({ data, onRefresh }) {
       <Refresh onPress={onRefresh}>
         <Icon name="refresh" color="#7159c1" size={16} />
         <RefreshText>Atualizar</RefreshText>
+      </Refresh>
+      <Refresh onPress={onDestroy}>
+        <Icon name="trash" color="#7159c1" size={16} />
+        <RefreshText>Remover</RefreshText>
       </Refresh>
     </Container>
   );

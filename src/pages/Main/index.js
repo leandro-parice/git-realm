@@ -29,6 +29,20 @@ export default function Main() {
     loadRepositories();
   }, []);
 
+  async function destroyRepository(repository){
+    const id = repository.id
+    console.tron.log(id)
+
+    const realm = await getRealm();
+    let deleteRepository = realm.objectForPrimaryKey('Repository', id)
+    realm.write(() => {
+      realm.delete(deleteRepository)
+    })
+
+    const data = realm.objects('Repository').sorted('stars', true);
+    setRepositories(data);
+  }
+
   async function saveRepository(repository) {
     const data = {
       id: repository.id,
@@ -77,7 +91,7 @@ export default function Main() {
           error={error}
           onChangeText={setInput}
           autoCapitalize="none"
-          autoCorret={false}
+          autoCorrect={false}
           placeholder="Procurar repositório..."
         />
         <Submit onPress={handleAddRepository}>
@@ -89,7 +103,11 @@ export default function Main() {
         data={repositories}
         keyExtractor={item => String(item.id)}
         renderItem={({ item }) => (
-          <Repository data={item} onRefresh={() => handleRefreshRepository(item)} />
+          <Repository
+            data={item}
+            onRefresh={() => handleRefreshRepository(item)} 
+            onDestroy={() => destroyRepository(item)}
+          />
         )}
       />
     </Container>
