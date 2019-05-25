@@ -1,7 +1,9 @@
 ## Git Realm
 
-App desenvolvido com React Native + RealmDB seguindo o tutorial da Rocketseat: https://www.youtube.com/watch?v=y5Hv7pMA1uo
+App developed with React Native + RealmDB following the Rocketseat tutorial: https://www.youtube.com/watch?v=y5Hv7pMA1uo
 
-## Melhorias
+## Improvements
 
-- Adicionei a função remover utilizando o repositório React Native Awesome Alerts (https://github.com/rishabhbhatia/react-native-awesome-alerts)
+- Remove repository function ✔
+- Disable input while waiting for API response
+- Show Spinner Icon while waiting for API response
