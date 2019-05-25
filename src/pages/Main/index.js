@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Keyboard } from 'react-native';
+import { Keyboard, ActivityIndicator } from 'react-native';
+
 import AwesomeAlert from 'react-native-awesome-alerts';
 
 import api from '~/services/api';
@@ -18,6 +19,8 @@ export default function Main() {
   const [repositories, setRepositories] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
   const [deleteId, setDeleteId] = useState(0);
+  const [inputEditable, setInputEditable] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function loadRepositories() {
@@ -64,15 +67,22 @@ export default function Main() {
   }
 
   async function handleAddRepository() {
-    try {
-      const response = await api.get(`/repos/${input}`);
-      await saveRepository(response.data);
+    if (!loading) {
+      setInputEditable(false);
+      setLoading(true);
+      try {
+        const response = await api.get(`/repos/${input}`);
+        await saveRepository(response.data);
 
-      setInput('');
-      setError(false);
-      Keyboard.dismiss();
-    } catch (err) {
-      setError(true);
+        setInput('');
+        setInputEditable(true);
+        setLoading(false);
+
+        setError(false);
+        Keyboard.dismiss();
+      } catch (err) {
+        setError(true);
+      }
     }
   }
 
@@ -95,9 +105,14 @@ export default function Main() {
           autoCapitalize="none"
           autoCorrect={false}
           placeholder="Procurar repositório..."
+          editable={inputEditable}
         />
         <Submit onPress={handleAddRepository}>
-          <Icon name="add" size={22} color="#fff" />
+          {loading ? (
+            <ActivityIndicator size="small" color="#fff" />
+          ) : (
+            <Icon name="add" size={22} color="#fff" />
+          )}
         </Submit>
       </Form>
       <List
