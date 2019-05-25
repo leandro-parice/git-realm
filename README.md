@@ -5,5 +5,5 @@ App developed with React Native + RealmDB following the Rocketseat tutorial: htt
 ## Improvements
 
 - Remove repository function ✔
-- Disable input while waiting for API response
-- Show Spinner Icon while waiting for API response
+- Disable input while waiting for API response ✔
+- Show Spinner Icon while waiting for API response ✔
