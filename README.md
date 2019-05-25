@@ -1,3 +1,5 @@
+![](images/logo.png)
+
 ## Git Realm
 
 App developed with React Native + RealmDB following the Rocketseat tutorial: https://www.youtube.com/watch?v=y5Hv7pMA1uo
