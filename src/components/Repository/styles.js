@@ -48,3 +48,10 @@ export const RefreshText = styled.Text`
   margin-left: 5px;
   text-transform: uppercase;
 `;
+
+export const ButtonsGroup = styled.View`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+`;

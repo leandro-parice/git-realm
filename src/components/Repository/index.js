@@ -10,6 +10,7 @@ import {
   StatCount,
   Refresh,
   RefreshText,
+  ButtonsGroup,
 } from './styles';
 
 export default function Repository({ data, onRefresh, onDestroy }) {
@@ -28,14 +29,16 @@ export default function Repository({ data, onRefresh, onDestroy }) {
         </Stat>
       </Stats>
 
-      <Refresh onPress={onRefresh}>
-        <Icon name="refresh" color="#7159c1" size={16} />
-        <RefreshText>Atualizar</RefreshText>
-      </Refresh>
-      <Refresh onPress={onDestroy}>
-        <Icon name="trash" color="#7159c1" size={16} />
-        <RefreshText>Remover</RefreshText>
-      </Refresh>
+      <ButtonsGroup>
+        <Refresh onPress={onRefresh}>
+          <Icon name="refresh" color="#7159c1" size={16} />
+          <RefreshText>Atualizar</RefreshText>
+        </Refresh>
+        <Refresh onPress={onDestroy}>
+          <Icon name="trash" color="#7159c1" size={16} />
+          <RefreshText>Remover</RefreshText>
+        </Refresh>
+      </ButtonsGroup>
     </Container>
   );
 }
