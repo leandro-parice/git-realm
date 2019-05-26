@@ -75,12 +75,14 @@ export default function Main() {
         await saveRepository(response.data);
 
         setInput('');
+        Keyboard.dismiss();
+
         setInputEditable(true);
         setLoading(false);
-
         setError(false);
-        Keyboard.dismiss();
       } catch (err) {
+        setInputEditable(true);
+        setLoading(false);
         setError(true);
       }
     }
